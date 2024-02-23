@@ -1,20 +1,199 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="index.css">
+<!-- <link rel="stylesheet" href="index.css"> -->
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>Shake Gestures</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="index.js"></script>
+    <style>
+      .anchor{
+          width: 120px;
+          height: 120px;
+          position: absolute;
+          top: 30%;
+          right: 1%;
+        touch-action: none;
+      }
+      
+      .anchor-cluster{
+        touch-action: none;
+      }
+      
+      .child{
+          width: 120px;
+          height: 120px;
+          position: absolute;
+          top: 30%;
+          right: 1%;
+        touch-action: none;
+      }
+
+      .top{
+        top: 30%;
+        right: 1%;
+        animation-name: top;
+        animation-duration: 1s;
+        animation-fill-mode: forwards; 
+      }
+      
+       .top1{
+        top: 30%;
+        right: 1%;
+        animation-name: top;
+        animation-duration: 1s;
+        animation-fill-mode: backwards; 
+      }
+      
+      .bottom{
+        top: 30%;
+        right: 1%;
+        animation-name: bottom;
+        animation-duration: 1s;
+        animation-fill-mode: forwards; 
+      }
+      
+      .topleft{
+        top: 30%;
+        right: 1%;
+        animation-name: topleft;
+        animation-duration: 1s;
+        animation-fill-mode: forwards; 
+      }
+      
+      .left{
+        top: 30%;
+        right: 1%;
+        animation-name: left;
+        animation-duration: 1s;
+        animation-fill-mode: forwards; 
+      }
+      
+      .bottomleft{
+        top: 30%;
+        right: 1%;
+        animation-name: bottomleft;
+        animation-duration: 1s;
+        animation-fill-mode: forwards; 
+      }
+      
+      .lightOpacity{
+        opacity: 50%;
+      }
+
+      @keyframes top {
+        0%   {right:1%; top:30%;}
+        100% {right:1%; top:19%;}
+      }
+
+      @keyframes left {
+        0%   {right:1%; top:30%;}
+        100% {right:20%; top:30%;}
+      }
+
+      @keyframes bottom {
+        0%   {right:1%; top:30%;}
+        100% {right:1%; top:41%;}
+      }
+
+      @keyframes topleft {
+        0%   {right:1%; t7op:30%;}
+        100% {right:15%; top:22.45%;}
+      }
+
+      @keyframes bottomleft {
+        0%   {right:1%; top:30%;}
+        100% {right:15%; top:37.55%;}
+      }
+    </style>
+<!--     <link rel="stylesheet" href="style.css" /> -->
+<!--     <script src="index.js"></script> -->
+    <script>
+      
+      let state = "1";
+      let start;
+      let test;
+      let butt;
+      let home;
+      let noti;
+      let lock;
+      let gesture ;
+      let brightness;
+        window.addEventListener('DOMContentLoaded', function() {
+            start = document.getElementById("start");
+            test = document.querySelector("#test");
+            home = document.querySelector("#home");
+            noti = document.querySelector("#noti");
+            lock = document.querySelector("#lock");
+            gesture = document.querySelector("#gesture");
+            brightness = document.querySelector("#brightness");
+          
+//           open menu
+            start.addEventListener("pointerenter", e => {
+              if (state=="1") {
+                home.classList.add("top");
+                noti.classList.add("topleft");
+                brightness.classList.add("left");
+                gesture.classList.add("bottomleft");
+                lock.classList.add("bottom");
+                test.innerText = "menu opened";
+                
+              }
+              start.addEventListener("pointerup", e=>{
+                home.classList.remove("top");
+                noti.classList.remove("topleft");
+                brightness.classList.remove("left");
+                gesture.classList.remove("bottomleft");
+                lock.classList.remove("bottom");
+                test.innerText = "menu closed";
+              })
+              
+            });
+//           hove on home
+            home.addEventListener("pointerenter", e => {
+                home.classList.add("lightOpacity");
+                test.innerText = home.getBoundingClientRect().top+" , "+home.getBoundingClientRect().bottom+" , "+home.getBoundingClientRect().left+" , "+home.getBoundingClientRect().right+" , "+e.clientX+" , "+e.clientY;
+            });
+            noti.addEventListener("pointerenter", e => {
+                noti.classList.add("lightOpacity");
+                test.innerText = noti.getBoundingClientRect().top+" , "+noti.getBoundingClientRect().bottom+" , "+noti.getBoundingClientRect().left+" , "+noti.getBoundingClientRect().right+" , "+e.clientX+" , "+e.clientY;
+            });
+            brightness.addEventListener("pointerenter", e => {
+                brightness.classList.add("lightOpacity");
+                test.innerText = brightness.getBoundingClientRect().top+" , "+brightness.getBoundingClientRect().bottom+" , "+brightness.getBoundingClientRect().left+" , "+brightness.getBoundingClientRect().right+" , "+e.clientX+" , "+e.clientY;
+            });
+            gesture.addEventListener("pointerenter", e => {
+                gesture.classList.add("lightOpacity");
+                test.innerText = gesture.getBoundingClientRect().top+" , "+gesture.getBoundingClientRect().bottom+" , "+gesture.getBoundingClientRect().left+" , "+gesture.getBoundingClientRect().right+" , "+e.clientX+" , "+e.clientY;
+            });
+            lock.addEventListener("pointerenter", e => {
+                lock.classList.add("lightOpacity");
+                test.innerText = lock.getBoundingClientRect().top+" , "+lock.getBoundingClientRect().bottom+" , "+lock.getBoundingClientRect().left+" , "+lock.getBoundingClientRect().right+" , "+e.clientX+" , "+e.clientY;
+            });
+            
+            function getElementOnHover() {
+              
+            }
+          
+        });
+      
+      
+    </script>
   </head>
   <body>
-    <body>
-        <img class="anchor" id="start" src="assets/start.png">
-        <img class="child" id="home" src="assets/home.png">
-        <img class="child" id="lock" src="assets/lock.png">
-        <img class="child" id="noti" src="assets/noti.png">
-        <img class="child" id="brightness" src="assets/brightness.png">
-        <img class="child" id="gesture" src="assets/gesture.png">
-    </body>
+    <div>
+      Testing:
+      <div id="test">
+        
+      </div>
+    </div>
+    <div class="anchor-cluster">
+        <img class="child" id="home" src="https://cdn.glitch.global/4fc6d5e8-e27a-47ed-aedc-41b051251912/home.png?v=1708578890871">
+        <img class="child" id="lock" src="https://cdn.glitch.global/4fc6d5e8-e27a-47ed-aedc-41b051251912/lock.png?v=1708578891175">
+        <img class="child" id="noti" src="https://cdn.glitch.global/4fc6d5e8-e27a-47ed-aedc-41b051251912/noti.png?v=1708578891513">
+        <img class="child" id="brightness" src="https://cdn.glitch.global/4fc6d5e8-e27a-47ed-aedc-41b051251912/brightness.png?v=1708578890271">
+        <img class="child" id="gesture" src="https://cdn.glitch.global/4fc6d5e8-e27a-47ed-aedc-41b051251912/gesture.png?v=1708578890625">
+<!--         <img class="anchor" id="start" src="https://cdn.glitch.global/4fc6d5e8-e27a-47ed-aedc-41b051251912/start.png?v=1708578891811" onmouseenter="hovering"> -->
+        <input name="start" class="anchor" id="start" type="image" src="https://cdn.glitch.global/4fc6d5e8-e27a-47ed-aedc-41b051251912/start.png?v=1708578891811" onmouseenter="hovering"/>
+
+    </div>
   </body>
 </html>

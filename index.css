@@ -1,8 +1,75 @@
 .anchor{
-    width: 30px;
-    height: 30px;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    top: 30%;
+    right: 1%;
 }
 .child{
-    width: 30px;
-    height: 30px;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    top: 30%;
+    right: 1%;
+}
+
+#home{
+  top: 30%;
+  right: 1%;
+  animation-name: top;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards; 
+}
+#lock{
+  top: 30%;
+  right: 1%;
+  animation-name: bottom;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards; 
+}
+/* #noti{
+  top: 30%;
+  right: 1%;
+  animation-name: topleft;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards; 
+} */
+#brightness{
+  top: 30%;
+  right: 1%;
+  animation-name: left;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards; 
+}
+/* #gesture{
+  top: 30%;
+  right: 1%;
+  animation-name: bottomleft;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards; 
+} */
+
+@keyframes top {
+  0%   {right:1%; top:30%;}
+  100% {right:1%; top:20%;}
+}
+
+@keyframes left {
+  0%   {right:1%; top:30%;}
+  100% {right:19%; top:30%;}
+}
+
+@keyframes bottom {
+  0%   {right:1%; top:30%;}
+  100% {right:1%; top:40%;}
+}
+
+@keyframes topleft {
+  0%   {right:1%; t7op:30%;}
+  100% {right:1%; top:20%;}
+}
+
+@keyframes bottomleft {
+  0%   {right:1%; top:30%;}
+  100% {right:1%; top:20%;}
 }
